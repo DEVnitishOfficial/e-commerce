@@ -1,5 +1,7 @@
+import connectDb from './config/db.js'
 import app from './index.js'
-const PORT=5454
-app.listen(PORT,()=>{
-    console.log(`Server is listening on port http://localhost:${PORT}`)
+const port=process.env.PORT || 4000
+app.listen(port,async()=>{
+    await connectDb()
+    console.log(`Server is listening on port http://localhost:${port}`)
 })
