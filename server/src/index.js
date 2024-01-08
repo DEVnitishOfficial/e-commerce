@@ -1,6 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import {config} from 'dotenv'
+import authRouter from './routes/auth.route.js'
+import userRouter from './routes/user.route.js'
 config()
 
 const app = express()
@@ -13,5 +15,8 @@ app.get("/",(req,res) => {
         success : true
     })
 })
+
+app.use("/auth",authRouter)
+app.use("/user",userRouter)
 
 export default app

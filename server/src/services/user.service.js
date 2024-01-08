@@ -1,25 +1,27 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
-import jwtProvider from "../config/jwtProvider.js";
-export const createUser = async (userData) => {
+import { getUserIdFromToken } from "../config/jwtProvider.js";
+ const createUser = async (userData) => {
   try {
     let { firstName, lastName, email, password } = userData;
     const isUserExist = await User.findOne({ email });
 
     if (isUserExist) {
-      throw new Error("User already exist with email", email);
+      throw new Error(`User already exist with email, ${email}`);
     }
     password = await bcrypt.hash(password, 10);
     const user = await User.create({ firstName, lastName, email, password });
     console.log("create user", user);
+    return user
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-export const findUserById = async (userId) => {
+ const findUserById = async (userId) => {
   try {
-    const user = await User.findById(userId).populate("address");
+    const user = await User.findById(userId)
+    // .populate("address");
     if (!user) {
       throw new Error("user not found with id", userId);
     }
@@ -29,20 +31,23 @@ export const findUserById = async (userId) => {
   }
 };
 
-export const getUserByEmail = async () => {
+ const getUserByEmail = async (email) => {
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
       throw new Error("user not found with email", email);
     }
     return user;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error({
+      success:'false',
+      error:error.message
+    });
   }
 };
-export const getUserProfileByToken = async (token) => {
+ const getUserProfileByToken = async (token) => {
   try {
-    const userId = jwtProvider.getUserIdFromToken(token);
+    const userId = getUserIdFromToken(token);
     const user = await findUserById(userId);
     if (!user) {
       throw new Error("user not found with id", userId);
@@ -53,7 +58,7 @@ export const getUserProfileByToken = async (token) => {
   }
 };
 
-const getAllUsers = async () => {
+const getAllUser = async () => {
   try {
     const allUsers = await User.find();
     if (!allUsers) {
@@ -64,4 +69,10 @@ const getAllUsers = async () => {
     throw new Error(error.message);
   }
 };
-export default getAllUsers
+export{
+  createUser,
+  findUserById,
+  getUserByEmail,
+  getUserProfileByToken,
+  getAllUser
+}
