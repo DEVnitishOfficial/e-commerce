@@ -1,6 +1,6 @@
 
 import { generatejwtToken } from '../config/jwtProvider.js'
-import createCart from '../services/cart.service.js'
+import {createCart} from '../services/cart.service.js'
 import {createUser,getUserByEmail } from '../services/user.service.js'
 import bcrypt from "bcrypt";
 
