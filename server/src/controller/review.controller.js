@@ -1,6 +1,6 @@
 
 import { createReview,getAllReview } from "../services/review.service.js"
-const createReview = async(req,res)=>{
+const createReviews = async(req,res)=>{
     try{
         const user = req.user
         const reqBody = req.body
@@ -20,7 +20,7 @@ const createReview = async(req,res)=>{
         })
     }
 }
-const getAllReview = async(req,res)=>{
+const getAllReviews = async(req,res)=>{
     try{
         const productId = req.params.productId
         const reviews = getAllReview(productId)
@@ -41,6 +41,6 @@ const getAllReview = async(req,res)=>{
 }
 
 export{
-    createReview,
-    getAllReview
+    createReviews,
+    getAllReviews
 }

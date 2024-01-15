@@ -1,14 +1,15 @@
 
-import { createProduct,deleteProduct, findProductById, getAllProducts } from "../services/product.service"
+import { createMultipleProduct, createProduct,deleteProduct, findProductById, getAllProducts } from "../services/product.service.js"
 
 // creating new product
-const createProduct = async(req,res) =>{
+const createProducts = async(req,res) =>{
+    const product = await createProduct(req.body);
+     console.log('product',product)
    try {
-     const product = await createProduct(req.body);
      if(product){
          return res.status(200).json({
              success:true,
-             message:"create product successfully",
+             message:"created product successfully",
              product
          })
      }
@@ -22,7 +23,7 @@ const createProduct = async(req,res) =>{
 }
 
 //delete product by id
-const deleteProduct = async(req,res) =>{
+const deleteProducts = async(req,res) =>{
     try {
       const productId = req.params.id
       const deletedproduct = await deleteProduct(productId);
@@ -42,7 +43,7 @@ const deleteProduct = async(req,res) =>{
     }
  }
  //update product by id
- const updateProduct = async(req,res) =>{
+ const updateProducts = async(req,res) =>{
     try {
       const productId = req.params.id
       const updatedproduct = await updateProduct(productId,req.body);
@@ -63,7 +64,7 @@ const deleteProduct = async(req,res) =>{
  }
 
  //find product by id
- const findProductById = async(req,res) =>{
+ const findProductByIds = async(req,res) =>{
     try {
       const productId = req.params.id
       const getProduct = await findProductById(productId);
@@ -84,7 +85,7 @@ const deleteProduct = async(req,res) =>{
  }
 
  //getAll products
- const getAllProducts = async(req,res) =>{
+ const getAllProduct = async(req,res) =>{
     try {
       const getAllProduct = await getAllProducts(req.query);
       if(getAllProduct){
@@ -104,7 +105,7 @@ const deleteProduct = async(req,res) =>{
  }
 
  //createMultiple product
- const createMultipleProduct = async(req,res) =>{
+ const createMultipleProducts = async(req,res) =>{
     try {
       const createdMultipleProduct = await createMultipleProduct(req.body);
       if(createdMultipleProduct){
@@ -124,10 +125,10 @@ const deleteProduct = async(req,res) =>{
  }
 
  export{
-    createProduct,
-    deleteProduct,
-    updateProduct,
-    findProductById,
-    getAllProducts,
-    createMultipleProduct
+    createProducts,
+    deleteProducts,
+    updateProducts,
+    findProductByIds,
+    getAllProduct,
+    createMultipleProducts
  }

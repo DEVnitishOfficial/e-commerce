@@ -1,9 +1,10 @@
-import Category from "../models/category.model";
-import Product from "../models/product.model";
+import Category from "../models/category.model.js";
+import Product from "../models/product.model.js";
 
 // creating a new product
 async function createProduct(reqData) {
   let topLevel = await Category.findOne({ name: reqData.topLevelCategory });
+  // console.log('toplevel',topLevel)
 
   if (!topLevel) {
     topLevel = new Category({
@@ -27,13 +28,13 @@ async function createProduct(reqData) {
 
   let thirdLevel = await Category.findOne({
     name: reqData.thirdLevelCategory,
-    parentCategory: reqData.secondLevel._id,
+    parentCategory: secondLevel._id,
   });
 
   if (!thirdLevel) {
     thirdLevel = new Category({
       name: reqData.thirdLevelCategory,
-      parentCategory: reqData.secondLevel._id,
+      parentCategory: secondLevel._id,
       level: 3,
     });
   }
@@ -47,7 +48,7 @@ async function createProduct(reqData) {
     imgUrl: reqData.imgUrl,
     brand: reqData.brand,
     price: reqData.price,
-    size: reqData.size,
+    sizes: reqData.size,
     quantity: reqData.quantity,
     category: thirdLevel._id,
   });

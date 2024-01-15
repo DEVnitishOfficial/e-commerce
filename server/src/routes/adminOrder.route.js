@@ -1,16 +1,16 @@
 
 import { Router } from 'express';
 import authenticate from '../middleware/authenticate.js';
-import {cancelOrder, confirmOrder, deleteOrder, deliverOrder, getAllOrders, shipOrder} from "../controller/adminOrder.controller.js"
+import {cancelOrders, confirmOrders, deleteOrders, deliverOrders, getAllOrder, shipOrders} from "../controller/adminOrder.controller.js"
 
 
 const router = Router()
 
-router.get("/",authenticate,getAllOrders);
-router.put("/:orderId/confirmed",authenticate,confirmOrder);
-router.put("/:orderId/ship",authenticate,shipOrder);
-router.put("/:orderId/deliver",authenticate,deliverOrder);
-router.put("/:orderId/cancel",authenticate,cancelOrder);
-router.delete("/:orderId/delete",authenticate,deleteOrder);
+router.get("/",authenticate,getAllOrder);
+router.put("/:orderId/confirmed",authenticate,confirmOrders);
+router.put("/:orderId/ship",authenticate,shipOrders);
+router.put("/:orderId/deliver",authenticate,deliverOrders);
+router.put("/:orderId/cancel",authenticate,cancelOrders);
+router.delete("/:orderId/delete",authenticate,deleteOrders);
 
 export default router

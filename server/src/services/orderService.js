@@ -1,6 +1,6 @@
 import Address from "../models/address.model.js";
 import Order from "../models/order.model.js";
-import { findUserCart } from "./cart.service";
+import { findUserCart } from "./cart.service.js";
 async function createOrder(user, shippingAddress) {
   let address;
 
@@ -132,7 +132,6 @@ export{
 	placeOrder,
 	confirmOrder,
 	shipOrder,
-	placeOrder,
 	deliverOrder,
 	cancelOrder,
 	findOrderById,

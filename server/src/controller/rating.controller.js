@@ -1,5 +1,5 @@
-import { createRating } from "../services/rating.service"
-const createRating = async(req,res)=>{
+import { createRating,getProductsRating } from "../services/rating.service.js"
+const createRatings = async(req,res)=>{
     try{
         const user = req.user
         const reqBody = req.body
@@ -19,7 +19,7 @@ const createRating = async(req,res)=>{
         })
     }
 }
-const getProductsRating = async(req,res)=>{
+const getProductsRatings = async(req,res)=>{
     try{
         const productId = req.params.productId
         const productRating = getProductsRating(productId)
@@ -40,6 +40,6 @@ const getProductsRating = async(req,res)=>{
 }
 
 export{
-    createRating,
-    getProductsRating
+    createRatings,
+    getProductsRatings
 }

@@ -1,5 +1,5 @@
-import { findProductById } from "./product.service";
-import Review from '../models/review.model'
+import { findProductById } from "./product.service.js";
+import Review from '../models/review.model.js'
 
 async function createReview(reqData,user){
 

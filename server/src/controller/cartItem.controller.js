@@ -1,6 +1,6 @@
 
-
-const updateCartItem = async(req,res) => {
+import { updateCartItem,removeCartItem } from "../services/cartItem.service.js"
+const updateCartItems = async(req,res) => {
     try{
         const user = req.user
        const updatedCartItem = await updateCartItem(user._id,req.params.id,req.body)
@@ -20,7 +20,7 @@ const updateCartItem = async(req,res) => {
     }
 }
 
-const removeCartItem = async(req,res) => {
+const removeCartItems = async(req,res) => {
     try{
         const user = req.user
        const removedCartItem = await removeCartItem(user._id,req.params.id)
@@ -41,6 +41,6 @@ const removeCartItem = async(req,res) => {
 }
 
 export{
-    updateCartItem,
-    removeCartItem
+    updateCartItems,
+    removeCartItems
 }

@@ -35,5 +35,9 @@ app.use("/api/reviews",reviewRouter);
 app.use("/api/ratings",ratingRouter);
 app.use("/api/admin/orders",adminOrderRoutes);
 
+app.use('*', (req,res) => {
+    res.status(404).send('OPPS!! 404 page not found')
+})
+
 
 export default app

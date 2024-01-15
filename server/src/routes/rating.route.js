@@ -1,9 +1,9 @@
 import { Router } from "express";
-import authenticate from "../middleware/authenticate";
-import { createRating, getProductsRating } from "../controller/rating.controller.js";
+import authenticate from "../middleware/authenticate.js";
+import { createRatings, getProductsRatings } from "../controller/rating.controller.js";
 const router = Router()
 
-router.get("/create",authenticate,createRating);
-router.put("/product/:productId",authenticate,getProductsRating);
+router.get("/create",authenticate,createRatings);
+router.put("/product/:productId",authenticate,getProductsRatings);
 
 export default router
