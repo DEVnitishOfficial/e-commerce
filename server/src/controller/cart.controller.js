@@ -1,8 +1,30 @@
 
-import { findUserCart,addCartItem } from "../services/cart.service.js";
-const findUserCarts = async(req,res) => {
+import { findUserCart,addCartItem, createCart } from "../services/cart.service.js";
+
+
+const createUserCart = async(req,res) => {
+    const user = req.user;
     try{
-   const user = req.user;
+   const cart = await createCart(user)
+   console.log('cart',cart)
+   if(cart){
+    res.status(200).json({
+        success:true,
+        message:"User Cart created successfully",
+        cart
+    })
+   }
+    }catch(error){
+        res.status(500).json({
+            success:false,
+            message:"failed to create user cart",
+            error:error.message
+        })
+    }
+}
+const findUserCarts = async(req,res) => {
+    const user = req.user;
+    try{
    const cart = await findUserCart(user._id)
    if(cart){
     res.status(200).json({
@@ -23,7 +45,9 @@ const findUserCarts = async(req,res) => {
 const addCartItems = async(req,res) =>{
     try{
     const user = req.user
+    console.log('req.body222',req.body)
    const cartItem = await addCartItem(user._id.toString(),req.body)
+   console.log('cartItem',cartItem)
    if(cartItem){
     res.status(200).json({
         success:true,
@@ -41,6 +65,7 @@ const addCartItems = async(req,res) =>{
 }
 
 export{
+    createUserCart,
     findUserCarts,
     addCartItems
 }

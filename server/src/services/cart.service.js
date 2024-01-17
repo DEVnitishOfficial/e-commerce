@@ -3,17 +3,19 @@ import CartItem from "../models/cartItem.model.js";
 import Product from "../models/product.model.js";
 async function createCart(user) {
   try {
-    const cart = new Cart(user );
+    const cart = new Cart({user} );
     const createdCart = await cart.save();
-    return createdCart;
+    console.log("createdCart",createdCart)
+    return createdCart
+    
   } catch (error) {
     return new Error(error.message);
   }
 }
 async function findUserCart(userId) {
+  const cart = await Cart.findOne({ user: userId });
+  const cartItems = CartItem.find(cart._id).populate("product");
   try {
-    const cart = await Cart.findOne({user:userId});
-    const cartItems = CartItem.find(cart._id).populate("product");
 
     cart.cartItems = cartItems;
 
@@ -31,11 +33,12 @@ async function findUserCart(userId) {
     cart.totalDiscountedPrice = totalDiscountedPrice
 
     return cart
+    
   } catch (error) {
-     throw new Error(error.message)
+    throw new Error(error.message)
   }
 }
-async function addCartItem(req,userId){
+async function addCartItem(userId,req){
   try{
     const cart = await Cart.findOne({user:userId})
    const product = await Product.findById(req.productId)
