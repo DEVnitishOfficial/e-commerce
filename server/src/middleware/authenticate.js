@@ -11,9 +11,7 @@ const authenticate = async(req,res,next) =>{
             })
         }
       const userId = getUserIdFromToken(token)
-      console.log('userId',userId)
       const user = await findUserById(userId)
-      console.log('user',user)
       req.user = user
     }catch(error){
      return res.status(500).json({

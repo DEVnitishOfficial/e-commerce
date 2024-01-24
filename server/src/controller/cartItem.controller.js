@@ -1,8 +1,8 @@
 
 import { updateCartItem,removeCartItem } from "../services/cartItem.service.js"
 const updateCartItems = async(req,res) => {
+    const user = req.user
     try{
-        const user = req.user
        const updatedCartItem = await updateCartItem(user._id,req.params.id,req.body)
        if(updatedCartItem){
         res.status(200).json({
@@ -21,16 +21,16 @@ const updateCartItems = async(req,res) => {
 }
 
 const removeCartItems = async(req,res) => {
+    const user = req.user
+    // console.log("data from user",req.user,"coming id from params",req.params.id)
     try{
-        const user = req.user
-       const removedCartItem = await removeCartItem(user._id,req.params.id)
-       if(removedCartItem){
-        res.status(200).json({
+       await removeCartItem(user._id,req.params.id)
+      
+        return res.status(200).json({
             success:true,
             message:"successfully removed cart item",
-            removedCartItem
         })
-       }
+       
     }catch(error){
         res.status(500).json({
             success:false,

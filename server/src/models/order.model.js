@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema({
     },
     deliveryDate:{
         type:Date,
-        required:true
+        // required:true
     },
     shippingAddress:{
         type:mongoose.Schema.Types.ObjectId,

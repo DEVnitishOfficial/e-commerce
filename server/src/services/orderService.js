@@ -1,7 +1,9 @@
 import Address from "../models/address.model.js";
 import Order from "../models/order.model.js";
+import OrderItem from "../models/orderItems.model.js";
 import { findUserCart } from "./cart.service.js";
 async function createOrder(user, shippingAddress) {
+  console.log('user',user,shippingAddress)
   let address;
 
   if (shippingAddress._id) {
@@ -9,18 +11,21 @@ async function createOrder(user, shippingAddress) {
     address = existingAddress;
   } else {
     address = new Address(shippingAddress);
+    console.log('address',address)
 
     address.user = user;
     await address.save();
 
-    user.addresses.push(address);
+    user.address.push(address);
     await user.save();
   }
   const cart = await findUserCart(user._id);
+  console.log('cart>>>>>',cart)
   const orderItems = [];
 
   for (const item of cart.cartItems) {
-    const orderItem = new orderItems({
+    console.log('itemmmm',item)
+    const orderItem = new OrderItem({
       price: item.price,
       product: item.product,
       size: item.size,
