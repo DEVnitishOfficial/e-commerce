@@ -17,7 +17,10 @@ function CustomareRouter() {
         <Navigation />
         </div>
         <Routes>
-             <Route path='/' element={<HomePage />}> </Route>
+        <Route path='/login' element={<HomePage />}> </Route>
+        <Route path='/register' element={<HomePage />}> </Route>
+
+             <Route path='/' element={<HomePage />}> </Route>            
              <Route path='/cart' element={<Cart />}> </Route>
              <Route path='/:labelOne/:labelTwo/:labelThree' element={<Product />}> </Route>
              <Route path='/product/:product' element={<ProductDetails />}> </Route>
