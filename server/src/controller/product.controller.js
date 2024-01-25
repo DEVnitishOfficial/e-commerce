@@ -65,8 +65,9 @@ const deleteProducts = async(req,res) =>{
 
  //find product by id
  const findProductByIds = async(req,res) =>{
+    const productId = req.params.id
+console.log('product>>>>>>>>>',req.params.id)
     try {
-      const productId = req.params.id
       const getProduct = await findProductById(productId);
       if(getProduct){
           return res.status(200).json({

@@ -2,6 +2,7 @@
 import { updateCartItem,removeCartItem } from "../services/cartItem.service.js"
 const updateCartItems = async(req,res) => {
     const user = req.user
+    // console.log('checkuser',user._id,req.params.id,req.body)
     try{
        const updatedCartItem = await updateCartItem(user._id,req.params.id,req.body)
        if(updatedCartItem){

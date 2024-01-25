@@ -3,6 +3,7 @@ import { findUserById } from "./user.service.js"
 
 
 async function updateCartItem(userId,cartItemId,cartItemData){
+  console.log('check',userId,cartItemId,cartItemData)
     try{
        const item = await findCartItemById(cartItemId)
        if(!item){
@@ -18,6 +19,9 @@ async function updateCartItem(userId,cartItemId,cartItemData){
         item.quantity = cartItemData.quantity;
         item.price = item.quantity*item.product.price
         item.discountedPrice = item.quantity * item.product.discountedPrice
+
+      const updatedCartItem = await item.save();
+      return updatedCartItem;
        }else{
         throw new Error("you can't update this cart item")
        }
