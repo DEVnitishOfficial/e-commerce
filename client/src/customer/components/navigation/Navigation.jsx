@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -9,11 +9,14 @@ import {
   ShoppingBagIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import navigation from './NavigationData'
 import AuthModal from '../auth/AuthModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser } from '../../../Redux/auth/Action'
+import jwt from '../'
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
@@ -21,11 +24,20 @@ function classNames (...classes) {
 
 export default function Navigation () {
   const navigate=useNavigate()
-
+  const dispatch = useDispatch();
+  const { auth } = useSelector((store) => store);
   const [open, setOpen] = useState(false)
   const [openAuthModal, setOpenAuthModal] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
   const openUserMenu = Boolean(anchorEl)
+  const location = useLocation();
+  const jwt = localStorage.getItem("jwt");
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt));
+    }
+  }, [jwt]);
 
   
 
@@ -38,7 +50,7 @@ export default function Navigation () {
   const handleOpen = () => {
     setOpenAuthModal(true)
   }
-  const handlClose = () => {
+  const handleClose = () => {
     setOpenAuthModal(false)
   }
 
@@ -46,6 +58,15 @@ export default function Navigation () {
     navigate(`/${category.id}/${section.id}/${item.id}`)
     close()
   }
+
+  useEffect(() => {
+    if (auth.user){ 
+      handleClose();
+    }
+    if( auth.user?.role!=="ADMIN" && (location.pathname==="/login" || location.pathname==="/register")){
+      navigate(-1)
+    }
+  },[auth.user])
 
   return (
     <div className='bg-white'>
