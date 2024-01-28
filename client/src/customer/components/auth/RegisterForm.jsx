@@ -14,6 +14,7 @@ const RegisterForm = () => {
 
     useEffect(() => { 
       if(jwt){
+        // dipatching a action means we are sending the action to the store
         dispatch(getUser())
       }
     },[jwt,auth.jwt])

@@ -42,12 +42,12 @@ import bcrypt from "bcrypt";
           message:"user password not matched"
         })
       }
-        const jwtToken =  generatejwtToken(user._id)
+        const jwt =  generatejwtToken(user._id)
         user.password = undefined
         return res.status(200).send(
           {
             message:"loggedIn successfully",
-            jwtToken
+            jwt
           }
           )
 

@@ -1,24 +1,43 @@
-import { Button, Grid, TextField } from '@mui/material'
-import React from 'react'
+import { Alert, Button, Grid, Snackbar, TextField } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getUser, login } from '../../../Redux/auth/Action';
 
 const LoginForm = () => {
+  const dispatch=useDispatch();
+  const jwt=localStorage.getItem("jwt");
     const navigate = useNavigate();
+    const [openSnackBar,setOpenSnackBar]=useState(false);
+  const { auth } = useSelector((store) => store);
+  const handleCloseSnakbar=()=>setOpenSnackBar(false);
+
+    useEffect(()=>{
+      if(jwt){
+        dispatch(getUser(jwt))
+      }
+    
+    },[jwt])
+
+    useEffect(() => {
+      if (auth.user || auth.error) setOpenSnackBar(true)
+    }, [auth.user]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
         const userData={
-          firstName: data.get("firstName"),
-          lastName: data.get("lastName"),
           email: data.get("email"),
           password: data.get("password"),
           
         }
+        dispatch(login(userData));
         console.log("user data",userData);
 
     }
   return (
+    <React.Fragment className=" shadow-lg "> 
     <div>
         <form className="w-full" onSubmit={handleSubmit}>
         <Grid container spacing={3}>
@@ -66,6 +85,12 @@ const LoginForm = () => {
         </div>
       </div>
     </div>
+    <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleCloseSnakbar}>
+    <Alert onClose={handleCloseSnakbar} severity="success" sx={{ width: '100%' }}>
+      {auth.error?auth.error:auth.user?"Register Success":""}
+    </Alert>
+  </Snackbar>
+  </React.Fragment>
   )
 }
 

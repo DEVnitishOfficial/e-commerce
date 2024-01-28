@@ -15,8 +15,7 @@ import { deepPurple } from '@mui/material/colors'
 import navigation from './NavigationData'
 import AuthModal from '../auth/AuthModal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../../../Redux/auth/Action'
-import jwt from '../'
+import { getUser, logout } from '../../../Redux/auth/Action'
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
@@ -67,6 +66,11 @@ export default function Navigation () {
       navigate(-1)
     }
   },[auth.user])
+
+  const handleLogout = () => {
+    dispatch(logout());
+    handleCloseUserMenu();
+  };
 
   return (
     <div className='bg-white'>
@@ -377,7 +381,7 @@ export default function Navigation () {
                                                       category,
                                                       section,
                                                       item,
-                                                      handlClose
+                                                      handleClose
                                                     )
                                                   }
                                                 >
@@ -419,7 +423,7 @@ export default function Navigation () {
 
               <div className='ml-auto flex items-center'>
                 <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-                {false ? ( 
+                {auth?.user ? ( 
                 <div>
                     <Avatar
                       className='text-white'
@@ -429,7 +433,7 @@ export default function Navigation () {
                       aria-expanded={open ? 'true' : undefined}
                       sx={{ bgcolor: deepPurple[500], color:"white",cursor:"pointer" }}
                     >
-                      N
+                      {auth.user?.firstName[0].toUpperCase()}
                     </Avatar>
                     <Menu
                     id='basic-menu'
@@ -450,7 +454,7 @@ export default function Navigation () {
                       My orders
                       </MenuItem>
 
-                      <MenuItem>
+                      <MenuItem onClick={handleLogout}>
                       LogOut
                       </MenuItem>
 
@@ -463,19 +467,6 @@ export default function Navigation () {
                   >
                     SignIn
                   </Button>)}
-                  <a
-                    href='#'
-                    className='text-sm font-medium text-gray-700 hover:text-gray-800'
-                  >
-                    Sign in
-                  </a>
-                  <span className='h-6 w-px bg-gray-200' aria-hidden='true' />
-                  <a
-                    href='#'
-                    className='text-sm font-medium text-gray-700 hover:text-gray-800'
-                  >
-                    Create account
-                  </a>
                 </div>
 
                 {/* Search */}
@@ -507,7 +498,7 @@ export default function Navigation () {
           </div>
         </nav>
       </header>
-      <AuthModal handleClose={handlClose} open={openAuthModal}/>
+      <AuthModal handleClose={handleClose} open={openAuthModal}/>
     </div>
   )
 }
