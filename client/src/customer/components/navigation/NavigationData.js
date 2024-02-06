@@ -27,38 +27,39 @@ const navigation = {
             id: 'clothing',
             name: 'Clothing',
             items: [
-              { name: 'Tops', href: '#' },
-              { name: 'Dresses', href: '#' },
-              { name: 'Pants', href: '#' },
-              { name: 'Denim', href: '#' },
-              { name: 'Sweaters', href: '#' },
-              { name: 'T-Shirts', href: '#' },
-              { name: 'Jackets', href: '#' },
-              { name: 'Activewear', href: '#' },
-              { name: 'Browse All', href: '#' }
+              { name: 'Tops', id:"top", href: `{women/clothing/tops}` },
+              { name: 'Dresses', id:"women_dress", href: '#' },
+              { name: 'Women Jeans', id: 'women_jeans' },
+              { name: 'Lengha Choli', id: 'lengha_choli' },
+              { name: 'Sweaters', id: 'sweater' },
+              { name: 'T-Shirts', id: 't-shirt' },
+              { name: 'Jackets', id: 'jacket' },
+              { name: 'Gouns', id: 'gouns' },
+              { name: 'Sarees', id: 'saree' },
+              { name: 'Kurtas', id: 'kurtas' },
             ]
           },
           {
             id: 'accessories',
             name: 'Accessories',
             items: [
-              { name: 'Watches', href: '#' },
-              { name: 'Wallets', href: '#' },
-              { name: 'Bags', href: '#' },
-              { name: 'Sunglasses', href: '#' },
-              { name: 'Hats', href: '#' },
-              { name: 'Belts', href: '#' }
+              { name: 'Watches', id: 'watch' },
+              { name: 'Wallets', id: 'wallet' },
+              { name: 'Bags', id: 'bag' },
+              { name: 'Sunglasses', id: 'sunglasse' },
+              { name: 'Hats', id: 'hat' },
+              { name: 'Belts', id: 'belt' },
             ]
           },
           {
             id: 'brands',
             name: 'Brands',
             items: [
-              { name: 'Full Nelson', href: '#' },
-              { name: 'My Way', href: '#' },
-              { name: 'Re-Arranged', href: '#' },
-              { name: 'Counterfeit', href: '#' },
-              { name: 'Significant Other', href: '#' }
+              { name: 'Full Nelson', id: 'Full Nelson' },
+              { name: 'My Way', id: 'My Way' },
+              { name: 'Re-Arranged', id: 'Re-Arranged' },
+              { name: 'Counterfeit', id: 'Counterfeit' },
+              { name: 'Significant Other', id: 'Significant Other' },
             ]
           }
         ]
@@ -89,13 +90,13 @@ const navigation = {
             id: 'clothing',
             name: 'Clothing',
             items: [
-              { name: 'Tops', href: '#' },
-              { name: 'Pants', href: '#' },
-              { name: 'Sweaters', href: '#' },
-              { name: 'T-Shirts', href: '#' },
-              { name: 'Jackets', href: '#' },
-              { name: 'Activewear', href: '#' },
-              { name: 'Browse All', href: '#' }
+              { name: 'Mens kurta', id: 'mens_kurta' },
+              { name: 'Shirt', id: 'shirt' },
+              { name: 'Men Jeans', id: 'men_jeans' },
+              { name: 'Sweaters', id: '#' },
+              { name: 'T-Shirts', id: 't-shirt' },
+              { name: 'Jackets', id: '#' },
+              { name: 'Activewear', id: '#' },
             ]
           },
           {

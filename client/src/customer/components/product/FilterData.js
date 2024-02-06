@@ -55,14 +55,14 @@ export const singleFilter = [
         id: "Discount",
         name:"Discount range",
         options: [
-                  { value: '10%', label: '10% and Above' },
-                  { value: '20%', label: '20% and Above' },
-                  { value: '30%', label: '30% and Above' },
-                  { value: '40%', label: '40% and Above' },
-                  { value: '50%', label: '50% and Above' },
-                  { value: '60%', label: '60% and Above' },
-                  { value: '70%', label: '70% and Above' },
-                  { value: '80%', label: '80% and Above' },
+                  { value: '10', label: '10% and Above' },
+                  { value: '20', label: '20% and Above' },
+                  { value: '30', label: '30% and Above' },
+                  { value: '40', label: '40% and Above' },
+                  { value: '50', label: '50% and Above' },
+                  { value: '60', label: '60% and Above' },
+                  { value: '70', label: '70% and Above' },
+                  { value: '80', label: '80% and Above' },
                  
                 ]
     },
@@ -76,3 +76,10 @@ export const singleFilter = [
     },
 
 ]
+
+
+export const sortOptions = [
+  
+  { name: "Price: Low to High", query: "price_low", current: false },
+  { name: "Price: High to Low", query: "price_high", current: false },
+];

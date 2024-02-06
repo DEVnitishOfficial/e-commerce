@@ -125,11 +125,23 @@ console.log('product>>>>>>>>>',req.params.id)
     }
  }
 
+ // Search products by query
+async function searchProduct(req, res) {
+    try {
+      const query = req.params.query;
+      const products = await searchProduct(query);
+      res.json(products);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
+
  export{
     createProducts,
     deleteProducts,
     updateProducts,
     findProductByIds,
     getAllProduct,
-    createMultipleProducts
+    createMultipleProducts,
+    searchProduct
  }

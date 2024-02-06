@@ -10,7 +10,7 @@ import api, { API_BASE_URL } from "../../../config/api";
 
 export const findProducts = (reqData) => async (dispatch) => {
   const {
-    colors,
+    color,
     sizes,
     minPrice,
     maxPrice,
@@ -25,9 +25,12 @@ export const findProducts = (reqData) => async (dispatch) => {
   try {
     dispatch({ type: FIND_PRODUCTS_BY_CATEGORY_REQUEST });
 
+    // console.log('min and max price',minPrice,maxPrice)
+    console.log('category',category)
     const { data } = await api.get(
-      `/api/products?color=${colors}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`
+      `/api/products?category=${category}&color=${color}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}`
     );
+    // &minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}
 
     console.log("get product by category - ", data);
     dispatch({
@@ -50,8 +53,6 @@ export const findProductById = (reqData) => async (dispatch) => {
     dispatch({ type: FIND_PRODUCT_BY_ID_REQUEST });
 
     const { data } = await api.get(`/api/products/id/${reqData.productId}`);
-
-    console.log("products by  id : ", data);
     dispatch({
       type: FIND_PRODUCT_BY_ID_SUCCESS,
       payload: data,

@@ -53,7 +53,7 @@ export default function Navigation () {
     setOpenAuthModal(false)
   }
 
-  const  handleCategoryClick =(category,item,section,close) =>{
+  const  handleCategoryClick =(category,section,item,close) =>{
     navigate(`/${category.id}/${section.id}/${item.id}`)
     close()
   }
@@ -288,7 +288,7 @@ export default function Navigation () {
                 <div className='flex h-full space-x-8'>
                   {navigation.categories.map(category => (
                     <Popover key={category.name} className='flex'>
-                      {({ open }) => (
+                      {({ open, close }) => (
                         <>
                           <div className='relative flex'>
                             <Popover.Button
@@ -381,7 +381,7 @@ export default function Navigation () {
                                                       category,
                                                       section,
                                                       item,
-                                                      handleClose
+                                                      close
                                                     )
                                                   }
                                                 >
