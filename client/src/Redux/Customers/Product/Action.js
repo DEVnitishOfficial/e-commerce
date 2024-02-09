@@ -25,13 +25,9 @@ export const findProducts = (reqData) => async (dispatch) => {
   try {
     dispatch({ type: FIND_PRODUCTS_BY_CATEGORY_REQUEST });
 
-    // console.log('min and max price',minPrice,maxPrice)
-    console.log('category',category)
     const { data } = await api.get(
-      `/api/products?category=${category}&color=${color}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}`
+      `/api/products?category=${category}&color=${color}&size=${sizes}&minPrice=${minPrice}&maxPrice=${maxPrice}&minDiscount=${minDiscount}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`
     );
-    // &minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}
-
     console.log("get product by category - ", data);
     dispatch({
       type: FIND_PRODUCTS_BY_CATEGORY_SUCCESS,

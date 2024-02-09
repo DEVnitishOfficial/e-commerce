@@ -52,7 +52,7 @@ export const singleFilter = [
                 ]
     },
     {
-        id: "Discount",
+        id: "discount",
         name:"Discount range",
         options: [
                   { value: '10', label: '10% and Above' },
@@ -70,8 +70,8 @@ export const singleFilter = [
         id: "stock",
         name:"Availibility",
         options: [
-                  { value: 'in stock', label: 'In Stock' },
-                  { value: 'out of stock', label: 'Out Of Stock' }
+                  { value: 'in_stock', label: 'In Stock' },
+                  { value: 'out_of_stock', label: 'Out Of Stock' }
                 ]
     },
 

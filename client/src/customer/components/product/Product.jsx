@@ -35,6 +35,7 @@ export default function Product () {
   const dispatch = useDispatch()
   const param = useParams()
   const { customersProduct } = useSelector(store => store)
+  console.log('customerProducts',customersProduct)
   const [isLoaderOpen, setIsLoaderOpen] = useState(false)
 
   const decodedQueryString = decodeURIComponent(location.search)
@@ -47,7 +48,13 @@ export default function Product () {
   const pageNumber = searchParams.get("page") || 1;
   const stock = searchParams.get("stock");
 
-console.log('disocount',discount)
+  const handleSortChange = (value) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("sort", value);
+    const query = searchParams.toString();
+    navigate({ search: `?${query}` });
+  };
+  
   const handlePaginationChange = (event, value) => {
     const searchParams = new URLSearchParams(location.search)
     searchParams.set('page', value)
@@ -57,7 +64,6 @@ console.log('disocount',discount)
   useEffect(() => {
     const [minPrice, maxPrice] =
       price === null ? [0, 0] : price.split("-").map(Number);
-    console.log('min and max price',minPrice,maxPrice)
     const data = {
       category: param.lavelThree,
       color: colorValue || [],
@@ -271,18 +277,18 @@ console.log('disocount',discount)
                       {sortOptions.map(option => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <a
-                              href={option.href}
+                              <p
+                              onClick={() => handleSortChange(option.query)}
                               className={classNames(
                                 option.current
-                                  ? 'font-medium text-gray-900'
-                                  : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
+                                  ? "font-medium text-gray-900"
+                                  : "text-gray-500",
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm cursor-pointer"
                               )}
                             >
                               {option.name}
-                            </a>
+                            </p>
                           )}
                         </Menu.Item>
                       ))}
@@ -459,7 +465,7 @@ console.log('disocount',discount)
         <section className='w-full px-[3.6rem]'>
           <div className='mx-auto px-4 py-5 flex justify-center shadow-lg border rounded-md'>
             <Pagination
-              count={customersProduct.products?.totalPages}
+              count={customersProduct.products?.getAllProduct?.totalPages}
               color='primary'
               className=''
               onChange={handlePaginationChange}

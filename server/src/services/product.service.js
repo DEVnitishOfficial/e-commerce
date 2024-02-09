@@ -130,7 +130,6 @@ async function getAllProducts(reqQuery) {
   }
 
   if (minPrice && maxPrice) {
-    console.log('minPrice & maxPrice',minPrice, maxPrice)
     query = query.where("discountedPrice").gte(minPrice).lte(maxPrice);
     // .where('discountedPrice'): Specifies that the subsequent conditions will be applied to the "discountedPrice" field.
 
@@ -139,7 +138,7 @@ async function getAllProducts(reqQuery) {
     // .lte(maxPrice): Adds another condition that the "discountedPrice" should be less than or equal to (lte) the value of maxPrice.
   }
   if (minDiscount) {
-    query = query.where("discountPresent").gt(minDiscount);
+    query = query.where("discountPersent").gt(minDiscount);
     // .where("discountPresent"): Specifies that the subsequent condition will be applied to the "discountPresent" field.
 
     // .gt(minDiscount): Adds a condition that the "discountPresent" should be greater than (gt) the value of minDiscount.
@@ -153,6 +152,7 @@ async function getAllProducts(reqQuery) {
   }
 
   if (sort) {
+    console.log('sort',sort)
     const sortDirection = sort === "price_high" ? -1 : 1;
     query = query.sort({ discountedPrice: sortDirection });
   }
