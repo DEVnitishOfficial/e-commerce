@@ -3,7 +3,6 @@ import { findUserById } from "./user.service.js"
 
 
 async function updateCartItem(userId,cartItemId,cartItemData){
-  console.log('check',userId,cartItemId,cartItemData)
     try{
        const item = await findCartItemById(cartItemId)
        if(!item){
@@ -14,8 +13,9 @@ async function updateCartItem(userId,cartItemId,cartItemData){
        if(!user){
         throw new Error("user not found with item.userid",userId)
        }
-
-       if(user.id === userId.toString()){
+       
+       if(user._id.toString() === userId.toString()){
+       
         item.quantity = cartItemData.quantity;
         item.price = item.quantity*item.product.price
         item.discountedPrice = item.quantity * item.product.discountedPrice
@@ -36,7 +36,6 @@ async function removeCartItem(userId,cartItemId){
         const cartItem = await findCartItemById(cartItemId);
         const user = await findUserById(cartItem.userId)
         const reqUser = await findUserById(userId);
-// console.log("checking id's",user.id, "reqUserId",reqUser.id)
         if(user.id === reqUser.id){
           await  CartItem.findByIdAndDelete(cartItem.id)
         }else{

@@ -96,11 +96,10 @@ export const removeCartItem = (reqData) => async (dispatch) => {
           "Content-Type":"application/json"
         },
       };
-      const { data } = await axios.put(
+      const { data } = await axios.patch(
         `${API_BASE_URL}/api/cart_items/${reqData.cartItemId}`,
         reqData.data,config
       );
-  console.log("updated cartitem ",data)
       dispatch({
         type: UPDATE_CART_ITEM_SUCCESS,
         payload: data,

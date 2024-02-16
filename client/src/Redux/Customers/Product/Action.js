@@ -45,7 +45,6 @@ export const findProducts = (reqData) => async (dispatch) => {
 };
 
 export const findProductById = (reqData) => async (dispatch) => {
-  console.log('reqData>>>>bynitishOfficial',reqData.productId)
   try {
     dispatch({ type: FIND_PRODUCT_BY_ID_REQUEST });
 

@@ -30,6 +30,7 @@ async function findUserCart(userId) {
     cart.totalPrice = totalPrice;
     cart.totalItem = totalItem;
     cart.totalDiscountedPrice = totalDiscountedPrice;
+    cart.discount = totalPrice - totalDiscountedPrice;
 
     return cart;
 }

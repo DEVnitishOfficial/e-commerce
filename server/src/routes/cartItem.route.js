@@ -5,7 +5,7 @@ import { removeCartItems, updateCartItems } from "../controller/cartItem.control
 const router = Router()
 
 
-router.put("/:id",authenticate,updateCartItems);
+router.patch("/:id",authenticate,updateCartItems);
 router.delete("/:id",authenticate,removeCartItems);
 
 export default router

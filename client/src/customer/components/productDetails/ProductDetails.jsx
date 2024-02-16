@@ -8,6 +8,7 @@ import HomeSectionCard from '../homeSectionCard/homeSectionCard'
 import { mens_kurta } from '../../../Data/mens_kurta'
 import { useDispatch, useSelector } from 'react-redux'
 import { findProductById } from '../../../Redux/Customers/Product/Action'
+import { addItemToCart } from '../../../Redux/Customers/Cart/Action'
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -69,12 +70,12 @@ export default function ProductDetails () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { customersProduct } = useSelector((store) => store);
-  console.log('customersProduct>dnkn<<<',customersProduct)
   const { productId } = useParams();
-  console.log("productIdddddddddddddd",productId)
   const jwt = localStorage.getItem("jwt");
 
   const handleAddToCart = () => {
+    const data = { productId, size: selectedSize.name };
+    dispatch(addItemToCart({ data, jwt }));
     navigate('/cart')
   }
 
