@@ -17,7 +17,7 @@ function Cart () {
 
   useEffect(() => {
     dispatch(getCart(jwt));
-  }, [jwt]);
+  }, [jwt,cart.updateCartItem,cart.deleteCartItem]);
 
 
   return (
