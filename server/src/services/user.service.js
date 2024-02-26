@@ -21,7 +21,6 @@ import { getUserIdFromToken } from "../config/jwtProvider.js";
  const findUserById = async (userId) => {
   try {
     const user = await User.findById(userId)
-    // .populate("address");
     if (!user) {
       throw new Error("user not found with id", userId);
     }
@@ -48,7 +47,7 @@ import { getUserIdFromToken } from "../config/jwtProvider.js";
  const getUserProfileByToken = async (token) => {
   try {
     const userId = getUserIdFromToken(token);
-    const user = await findUserById(userId);
+    const user = (await findUserById(userId)).populate("address");
     if (!user) {
       throw new Error("user not found with id", userId);
     }

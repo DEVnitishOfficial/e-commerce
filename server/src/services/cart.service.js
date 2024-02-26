@@ -5,7 +5,6 @@ async function createCart(user) {
   try {
     const cart = new Cart({ user });
     const createdCart = await cart.save();
-    console.log("createdCart", createdCart);
     return createdCart;
   } catch (error) {
     return new Error(error.message);

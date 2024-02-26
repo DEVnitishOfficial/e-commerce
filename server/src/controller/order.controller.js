@@ -3,9 +3,8 @@ import { createOrder, findOrderById, userOrderHistory } from "../services/orderS
 const creatingOrder = async(req,res)=>{
     try {
        const user = await req.user
-    //    console.log('user',user)
-    //    console.log('req.body',req.body)
        const createdOrder = await createOrder(user,req.body) 
+       
        if(createdOrder){
         res.status(200).json({
             success:true,
