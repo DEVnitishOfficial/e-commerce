@@ -15,7 +15,8 @@ function OrderSummary() {
 const orderId = searchParams.get("order_id");
 const dispatch=useDispatch();
   const jwt=localStorage.getItem("jwt");
-  const {order}=useSelector(state=>state)
+  const {order}=useSelector((store) => store)
+  console.log('order>>>>>>>>>>',order)
 
 useEffect(()=>{
   
@@ -31,12 +32,13 @@ const handleCreatePayment=()=>{
   return (
     <div className="space-y-5">
         <div className="p-5 shadow-lg rounded-md border ">
-            <AddressCard address={order.order?.shippingAddress}/>
+            <AddressCard address={order.order?.order?.shippingAddress}/>
         </div>
       <div className="lg:grid grid-cols-3 relative justify-between">
         <div className="lg:col-span-2 ">
           <div className=" space-y-3">
-            {order.order?.orderItems.map((item) => (
+            {order.order?.order?.orderItems
+.map((item) => (
               <>
                 <CartItem item={item} showButton={false}/>
               </>
@@ -50,12 +52,12 @@ const handleCreatePayment=()=>{
 
             <div className="space-y-3 font-semibold">
               <div className="flex justify-between pt-3 text-black ">
-                <span>Price ({order.order?.totalItem} item)</span>
-                <span>₹{order.order?.totalPrice}</span>
+                <span>Price ({order.order?.order?.totalItem} item)</span>
+                <span>₹{order.order?.order?.totalPrice}</span>
               </div>
               <div className="flex justify-between">
                 <span>Discount</span>
-                <span className="text-green-700">-₹{order.order?.discounte}</span>
+                <span className="text-green-700">-₹{order.order?.order?.discount}</span>
               </div>
               <div className="flex justify-between">
                 <span>Delivery Charges</span>
@@ -64,7 +66,7 @@ const handleCreatePayment=()=>{
               <hr />
               <div className="flex justify-between font-bold text-lg">
                 <span>Total Amount</span>
-                <span className="text-green-700">₹{order.order?.totalDiscountedPrice}</span>
+                <span className="text-green-700">₹{order.order?.order?.totalDiscountedPrice}</span>
               </div>
             </div>
 

@@ -24,6 +24,7 @@ export const orderReducer = (state = initialState, action) => {
         loading: true,
       };
     case CREATE_ORDER_SUCCESS:
+      console.log('log from order reducer',action.payload)
       return {
         loading: false,
         success: true,

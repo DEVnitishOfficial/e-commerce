@@ -13,7 +13,6 @@ async function createOrder(user, shippingAddress) {
     address.user = user
     await address.save();
   }
-
   if (!user.address.includes(address._id)) {
     user.address.push(address);
     await user.save();
