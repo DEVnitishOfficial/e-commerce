@@ -11,6 +11,7 @@ import orderRouter from './routes/customerOrder.route.js'
 import reviewRouter from './routes/review.route.js'
 import ratingRouter from './routes/rating.route.js'
 import adminOrderRoutes from './routes/adminOrder.route.js'
+import paymentRouter from './routes/payment.routes.js'
 config()
 
 const app = express()
@@ -34,6 +35,7 @@ app.use("/api/orders",orderRouter);
 app.use("/api/reviews",reviewRouter);
 app.use("/api/ratings",ratingRouter);
 app.use("/api/admin/orders",adminOrderRoutes);
+app.use('/api/payments',paymentRouter)
 
 app.use('*', (req,res) => {
     res.status(404).send('OPPS!! 404 page not found')
