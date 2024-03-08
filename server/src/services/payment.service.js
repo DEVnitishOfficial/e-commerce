@@ -20,7 +20,7 @@ const createPaymentLink = async (orderId) => {
       notes: {
         policy_name: "product purchase",
       },
-      callback_url: "https://myfirstgameprojects.netlify.app/",
+      callback_url: `http://localhost:3000/payment/${orderId}`,
       callback_method: "get",
     };
 

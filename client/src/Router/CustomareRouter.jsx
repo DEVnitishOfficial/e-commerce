@@ -9,6 +9,7 @@ import ProductDetails from '../customer/components/productDetails/ProductDetails
 import Checkout from '../customer/components/checkOut/CheckOut.jsx'
 import Order from '../customer/components/order/Order.jsx'
 import OrderDetails from '../customer/components/order/OrderDetails'
+import PaymentSuccess from '../customer/components/PaymentSuccess/PaymentSuccess.jsx'
 
 function CustomareRouter() {
   return (
@@ -27,6 +28,7 @@ function CustomareRouter() {
              <Route path='/checkout' element={<Checkout />}> </Route>
              <Route path='/account/order' element={<Order />}> </Route>
              <Route path='/account/order/:orderId' element={<OrderDetails />}> </Route>
+             <Route path="/payment/:orderId" element={<PaymentSuccess />}></Route>
         </Routes>
         <div>
         <Footer />

@@ -7,6 +7,7 @@ import CartItem from '../cart/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getOrderById } from '../../../Redux/Customers/Order/Action';
+import { createPayment } from '../../../Redux/Customers/Payment/Action';
 
 function OrderSummary() {
   const navigate = useNavigate();
@@ -24,8 +25,8 @@ useEffect(()=>{
 },[orderId])
 
 const handleCreatePayment=()=>{
-  const data={orderId:order.order?._id,jwt}
-  // dispatch(createPayment(data))
+  const data={orderId:order.order?.order?._id,jwt}
+  dispatch(createPayment(data))
 }
   
 
