@@ -9,6 +9,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { deepPurple } from '@mui/material/colors';
 import { customTheme } from './theme/customTheme';
+import AdminNavbar from './Navigation/AdminNavbar';
 const drawerWidth = 240;
 
 const menu = [
@@ -107,7 +108,7 @@ export default function AdminPannel() {
     <ThemeProvider theme={customTheme}>
       <Box sx={{ display: `${isLargeScreen ? "flex" : "block"}` }}>
         <CssBaseline />
-        {/* <AdminNavbar handleSideBarViewInMobile={handleSideBarViewInMobile} /> */}
+        <AdminNavbar handleSideBarViewInMobile={handleSideBarViewInMobile} />
 
         <Drawer
           variant={drawerVariant}
