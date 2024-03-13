@@ -2,7 +2,7 @@
 import { Avatar, Box, CssBaseline, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, useMediaQuery } from '@mui/material';
 import {ThemeProvider, useTheme} from '@mui/material/styles'
 import { useEffect, useState } from 'react';
-import { Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { getUser, logout } from '../Redux/auth/Action';
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -10,6 +10,9 @@ import MailIcon from "@mui/icons-material/Mail";
 import { deepPurple } from '@mui/material/colors';
 import { customTheme } from './theme/customTheme';
 import AdminNavbar from './Navigation/AdminNavbar';
+import "./AdminPannel.css"
+import Dashboard from './Card/Dashboard';
+import Achivement from './Tables/Achivement';
 const drawerWidth = 240;
 
 const menu = [
@@ -139,8 +142,10 @@ export default function AdminPannel() {
         <Box className="adminContainer" component="main" sx={{ flexGrow: 1 }}>
           <Toolbar />
           <Routes>
-            {/* <Route path="/" element={ <Dashboard />}></Route>
-            <Route path="/product/create" element={<CreateProductForm/>}></Route>
+            {/* testing the tables content */}
+          <Route path="/" element={ <Achivement />}></Route>
+           {/* <Route path="/" element={ <Dashboard />}></Route> */}
+              {/*<Route path="/product/create" element={<CreateProductForm/>}></Route>
             <Route path="/product/update/:productId" element={<UpdateProductForm/>}></Route>
             <Route path="/products" element={<ProductsTable/>}></Route>
             <Route path="/orders" element={<OrdersTable/>}></Route>
